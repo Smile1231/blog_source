@@ -1,0 +1,38 @@
+.back-to-top {
+  background: transparent;
+  margin: 20px - $sidebar-offset -10px -20px;
+  opacity: 0;
+
+  if (!hexo-config('back2top.scrollpercent')) {
+    span {
+      display: none;
+    }
+  }
+
+  &.back-to-top-on {
+    cursor: pointer;
+    opacity: $b2t-opacity;
+
+    &:hover {
+      opacity: $b2t-opacity-hover;
+    }
+  }
+}
+
+.site-author-image {
+  display: block;
+  margin: 0 auto;
+  padding: $site-author-image-padding;
+  max-width: $site-author-image-width;
+  height: $site-author-image-height;
+  border: $site-author-image-border-width solid $site-author-image-border-color;
+  //设置圆形
++  border-radius: 50%;
++  transition: 2s all;
+}
+   //旋转
++ .site-author-image:hover{
++   transform: rotate(360deg);
++ }
+
+

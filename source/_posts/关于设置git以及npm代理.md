@@ -1,12 +1,15 @@
 ---
-title: 关于设置Git代理
-date: 2021-11-05 18:55:21
+title: 关于设置git以及npm代理
+abbrlink: afe5178f
+date: 2021-11-06 13:08:00
 tags:
 ---
 
-```git
-//设置全局代理
-//http
+ 我们在平时使用`git`或者`npm`等进行拉取项目或者安装一些需要科学上网的包时，就会报一些`connection timeout`的错误，这篇博客做了一些简单的汇总
+
+## 关于`git`设置代理和取消代理
+
+```bash
 git config --global https.proxy http://127.0.0.1:1080
 //https
 git config --global https.proxy https://127.0.0.1:1080
@@ -25,16 +28,22 @@ git config --global --unset https.https://github.com.proxy
 git config --global --unset http.proxy
 git config --global --unset https.proxy
 ```
+<!-- more -->
 
-```java
-/** * 测试用 */
-public class Test 
-{ 
-     public static void main(String[] args)
-      { 
-          System.out.println("Hello World!"); 
-    } 
-}
+## 关于`npm`的设置代理和取消代理
+
+```node
+npm config set proxy socks5://127.0.0.1:10808
+npm config set https-proxy socks5://127.0.0.1:10808
+
+# npm设置镜像源
+npm config set registry=http://registry.npmjs.org
+
+# 淘宝镜像源 https://registry.npm.taobao.org/
+
+# 取消代理
+npm config delete proxy
+npm config delete https-proxy
 ```
 
 

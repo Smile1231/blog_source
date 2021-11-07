@@ -14,8 +14,8 @@ timezone: ''
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
 url: https://smile1231.github.io/
-permalink: :year/:month/:day/:title/
-permalink_defaults:
+# permalink: :year/:month/:day/:title/
+# permalink_defaults:
 pretty_urls:
   trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
   trailing_html: true # Set to false to remove trailing '.html' from permalinks
@@ -44,21 +44,20 @@ post_asset_folder: false
 relative_link: false
 future: true
 highlight:
-  enable: false
+  enable: true
   line_number: true
   auto_detect: true
-  tab_replace: ''
-  wrap: true
+  tab_replace: false
+  wrap: false
   hljs: false
 prismjs:
   enable: false
-  preprocess: true
-  line_number: true
-  tab_replace: ''
+  # preprocess: false
+  # line_number: true
+  # tab_replace: ''
 
- # 增加google prettify code配置 #自定义高亮代码（google prettify code）
- 
-custom_highlight_theme: sunburst
+ #增加google prettify code配置 #自定义高亮代码（google prettify code）
+#custom_highlight_theme: sunburst
 
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
@@ -101,7 +100,7 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: Claudia
+theme: next
 
 
 # Deployment
@@ -122,4 +121,25 @@ live2d:
         height: 300      #模型高度
     mobile: 
         show: false      #是否在手机端显示
+
+search:
+  path: search.xml
+  field: post
+  format: html
+  limit: 10000
+
+permalink: posts/:abbrlink/
+abbrlink:
+	alg: crc32   #算法： crc16(default) and crc32
+	rep: hex     #进制： dec(default) and hex
+
+# RSS订阅支持
+plugin: 
+  - hexo-generator-feed
+
+# Feed Atom
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
 

@@ -871,16 +871,16 @@ pace:
 # Dependencies: https://github.com/theme-next/theme-next-three
 three:
   enable: true
-  three_waves: true
+  three_waves: false
   canvas_lines: true
-  canvas_sphere: true
+  canvas_sphere: false
 
 # Canvas-ribbon
 # Dependencies: https://github.com/theme-next/theme-next-canvas-ribbon
 # For more information: https://github.com/zproo/canvas-ribbon
 canvas_ribbon:
-  enable: true
-  size: 300 # The width of the ribbon
+  enable: false
+  size: 1000 # The width of the ribbon
   alpha: 0.6 # The transparency of the ribbon
   zIndex: -1 # The display level of the ribbon
 
@@ -1041,6 +1041,12 @@ post_wordcount:
   totalcount: true #站点总字数
   separated_meta: true
 
-auto_excerpt:
-  enable: true
-  length: 100
+# auto_excerpt:
+#   enable: true
+#   length: 10
+
+excerpt:
+  depth: 3
+  excerpt_excludes: []
+  more_excludes: []
+  hideWholePostExcerpts: true

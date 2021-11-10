@@ -252,7 +252,7 @@ post_meta:
 symbols_count_time:
   separated_meta: true
   item_text_post: true
-  item_text_total: false
+  item_text_total: true
   awl: 4 # Average Word Length
   wpm: 275 # Words Per Minute
 
@@ -286,7 +286,7 @@ follow_me:
 related_posts:
   enable: true
   title: # Custom header, leave empty to use the default one
-  display_in_home: false
+  display_in_home: true
   params:
     maxCount: 5
     #PPMixingRate: 0.0
@@ -329,7 +329,7 @@ calendar:
   offsetMax: 24 # Time Range
   offsetMin: 4 # Time Range
   showDeleted: false
-  singleEvents: true
+  singleEvents: false
   maxResults: 250
 
 
@@ -379,7 +379,7 @@ reading_progress:
   # Available values: top | bottom
   position: top
   color: "#37c6c0"
-  height: 3px
+  height: 5px
 
 # Bookmark Support
 bookmark:

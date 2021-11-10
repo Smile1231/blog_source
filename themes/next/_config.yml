@@ -1042,11 +1042,11 @@ post_wordcount:
   separated_meta: true
 
 # auto_excerpt:
-#   enable: true
+#   enable: false
 #   length: 10
 
 excerpt:
-  depth: 3
+  depth: 2
   excerpt_excludes: []
   more_excludes: []
   hideWholePostExcerpts: true

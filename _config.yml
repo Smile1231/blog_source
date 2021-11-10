@@ -117,8 +117,8 @@ live2d:
         use: live2d-widget-model-shizuku #模型选择 live2d-widget-model-wanko
     display: 
         position: left  #模型位置
-        width: 300       #模型宽度
-        height: 600      #模型高度
+        width: 200       #模型宽度
+        height: 400      #模型高度
     mobile: 
         show: false      #是否在手机端显示
 

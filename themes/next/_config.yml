@@ -1045,8 +1045,8 @@ post_wordcount:
 #   enable: false
 #   length: 10
 
-excerpt:
-  depth: 2
-  excerpt_excludes: []
-  more_excludes: []
-  hideWholePostExcerpts: true
+# excerpt:
+#   depth: 2
+#   excerpt_excludes: []
+#   more_excludes: []
+#   hideWholePostExcerpts: true

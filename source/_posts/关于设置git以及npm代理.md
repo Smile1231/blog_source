@@ -9,6 +9,9 @@ tags: git,npm,node
 
 ## 关于`git`设置代理和取消代理
 
+<!-- more -->
+
+
 ```bash
 git config --global https.proxy http://127.0.0.1:1080
 //https
@@ -32,7 +35,6 @@ git config --global --get https.proxy
 git config --global --unset http.proxy
 git config --global --unset https.proxy
 ```
-<!-- more -->
 
 ## 关于`npm`的设置代理和取消代理
 

@@ -41,11 +41,11 @@
         </{%- if is_index %}h2{% else %}h1{%- endif %}>
 
         <div class="post-meta">
-        {% if post.top %}
-    <i class="fa fa-thumb-tack" style="color: #EB6D39"></i>
-        <font color=#FFFF00	>置顶</font>
-        <span class="post-meta-divider">|</span>
-        {% endif %}
+          {% if post.top %}
+            <i class="fa fa-arrow-circle-up" style="color: #EB6D39"></i>          
+            <font color=#FFFF00	>置顶</font>
+            <span class="post-meta-divider">|</span>
+          {% endif %}
 
 
           {%- set date_diff = date(post.date) != date(post.updated) %}

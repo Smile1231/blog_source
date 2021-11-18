@@ -56,5 +56,8 @@
   {%- if theme.pjax %}
     </div>
   {%- endif %}
+
+  {% include '_custom/custom_cursor.swig' %}
+  {% include '_custom/custom_background.swig' %}
 </body>
 </html>

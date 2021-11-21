@@ -4,7 +4,7 @@ hide: false
 abbrlink: 3d071a12
 date: 2021-11-10 22:19:19
 tags:
-categories:
+categories: Hexo
 keywords:
 ---
 
@@ -145,4 +145,15 @@ hexo s //启动本地服务器
 
 `command + 左键`就可以在浏览器中浏览效果了
 
+# 设置背景音乐
+
+{% asset_img 2021-11-21-22-39-25.png %}
+{% asset_img 2021-11-21-22-39-51.png %}
+{% asset_img 2021-11-21-22-40-14.png %}
+
+我们将音乐插件添加到侧边栏，效果类似于此`Blog`
+打开我们主题文件：``themes\next\layout\_macro\sidebar.swig找到sidebar-inner``
+
+{% asset_img 2021-11-21-22-38-07.png %}
+就可以啦！
 

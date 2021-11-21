@@ -46,8 +46,9 @@ keywords: hexo
         var a = markdown.split("\n");//通过下面第一张图片内容通过换行符进行切割
         var b = a[1].substring(6); //获取到title行字符,然后再去除空格即可获得图片的路径
         markdown = markdown.replace(
-          /\{%\s*asset_img\s*(.*)\s*%\}/g,
-          (whole, content) => ('![]('+b.trim()+'/'+content+')')
+          //以下为代码，注释是因为markdown语法会渲染出错，但是是正确代码
+        //  /\{%\s*asset_img\s*(.*)\s*%\}/g,
+         // (whole, content) => ('![]('+b.trim()+'/'+content+')')
         )
         return resolve(markdown)
       })

@@ -1,9 +1,10 @@
 ---
 title: Hexo中添加动态2d二次元人物模型
 hide: false
+categories: Hexo
+abbrlink: 5c2529f6
 date: 2021-11-21 23:18:56
 tags:
-categories: Hexo
 keywords:
 ---
 

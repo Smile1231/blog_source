@@ -7,6 +7,10 @@
 
   <aside class="sidebar">
     <div class="sidebar-inner">
+    {% if theme.diy_time.clock %}
+    <!-- canvas粒子时钟 -->
+    {% include '../_custom/clock.swig' %}
+    {% endif %}
         <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1489346184&auto=1&height=66"></iframe>
       {%- set display_toc = page.toc.enable and display_toc %}
       {%- if display_toc %}
@@ -52,3 +56,5 @@
   </aside>
   <div id="sidebar-dimmer"></div>
 {% endmacro %}
+
+

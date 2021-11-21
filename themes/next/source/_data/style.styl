@@ -1,94 +1,123 @@
-// 添加背景图片 
-body { 
-    background-image: url(/images/u=1217520976,1493455735&fm=26&gp=0.jpg); 
-    background-repeat: no-repeat; 
-    //不重复
-     background-attachment: fixed; 
-     //不随页面滚动
-      background-position: 50% 50%;
-       //center居中 
-       background-size: 100% 100%;
-        //cover为填充 
-        } 
-        
-        // 主页文章添加阴影效果 
-        .post { margin-top: 60px; margin-bottom: 60px; padding: 25px; -webkit-box-shadow: 0 0 5px rgba(202, 203, 203, .5); -moz-box-shadow: 0 0 5px rgba(202, 203, 204, .5); } 
-            // 标题栏背景 
-            .site-meta { padding: 20px 0; color: #fff; background-image: url(/images/95033e2a5404c30e2ab560e72b157a0a.jpg); background-repeat: no-repeat; background-attachment: fixed; background-position: center; background-size: 100% 100%; } 
-                // 修改主体透明度 
-                .main-inner{ background: #fff; opacity: 0.85; }
-                     // 修改菜单栏透明度，会引起本地搜索菜单bug 
-                     .header-inner { 
-                         opacity: 0.95; border-radius: 30px 30px 30px 30px; 
-                         //菜单栏椭圆化
-                          box-shadow: rgba(0,0,0,0.1) 0px 15px 35px 0px, rgba(0,0,0,0.31) 6px 6px 10px 0px; } 
-                          //主标题颜色 
-                          .brand{ color: #390044 } 
-                              //副标题颜色 
-                              .site-subtitle { margin-top: 10px; font-size: 13px; color: #ffffff; } 
-                                  //目录背景色 
-                                  .header-inner{ background: #bc0100; background: linear-gradient(0deg, #bc0100 20%, #9b1d22 80%); } 
-                                      //侧边栏与文字的颜色 
-                                      .menu-item a{ color: #fbda41 //左上目录文字颜色 }
-                                           .menu-item-active a{ color: #555555 } 
-                                               //页脚文字
-                                                .footer,.footer a,.footer .with-love{ //color: #31ff00 } 
-                                                    //文章样式 //每一篇文章标题右侧增加图片 
-                                                    article .post-header{ background: url(/images/46265dece9bce1c56eb6dc6d4c931423.jpeg); background-repeat: no-repeat;
-                                                    //不重复 
-                                                    background-position: right ;
-                                                     //居右 
-                                                     background-size: contain;
-                                                     //合适大小 //
-                                                     color: #ff0000; 
-                                                     //归档的日期文字颜色 
-                                                     } 
-                                                     //文章版权处右侧增加图片（没有找到图片所在位置） 
-                                                     article .post-copyright{ background: url(https://s1.ax1x.com/2018/12/20/FrD60g.png);
-                                                     
-                                                     //瑾贺新年 透明 
-                                                     background-repeat: no-repeat;
-                                                     //不重复 
-                                                     background-position: right bottom ; 
-                                                     //居右下
-                                                      background-size: contain;
-                                                     //auto按图片比例缩放
-                                                      } 
-                                                      //文章内页左边栏样式 //左边栏概览 
-                                                      .sidebar-inner { 
-                                                          //
-                                                          background: url(https://s1.ax1x.com/2018/12/20/FrBGIs.jpg);
-                                                          //元旦 大红背景 
-                                                          background: url(/images/d487657bd263d8d9d17e23b75c241034.jpg);
-                                                          // 左下格式
-                                                           background-repeat: no-repeat;
-                                                           //不重复 
-                                                           background-position: center ; 
-                                                           //居右下 
-                                                           background-size: cover;
-                                                           //auto按图片比例缩放 
-                                                           //
-                                                           color: #fbda41; border-radius: 30px 30px 30px 30px; position: absolute; overflow: hidden;
-                                                           //上面三行效果：左下栏椭圆化 
-                                                           box-shadow: rgba(0,0,0,0.1) 0px 15px 35px 0px, rgba(0,0,0,0.31) 6px 6px 10px 0px; } .sidebar-inner .site-overview-wrap .site-overview,.sidebar-inner .site-overview-wrap .site-overview .site-author-name,.sidebar a,.sidebar span.exturl,.site-state-item-name,.site-description{ color: #fbda41; //左下文字颜色 
-                                                           } 
-                                                           
-                                                           //文章内页左边栏(要改下方的颜色尽量全改，不然会颜色混杂) 
-                                                           .sidebar-nav .sidebar-nav-active{ color: #fbda41; border-bottom-color: #fbda41; } .sidebar-nav li{ color: #fbda41; border-bottom-color: #fbda41; } .links-of-blogroll-list{ text-shadow: red 0 1px 0;
-                                                               //给links部分添加文字阴影
-                                                                } .post-toc ol a{ color: #fbda41; } 
-                                                                //二次深度美化 //给文章概述与文章标题添加上一个方框
-                                                                 .content .posts-expand .post-block{ position: relative; margin-bottom: 30px; padding: 40px 20px; font-size: 14px; box-shadow: rgba(0,0,0,0.1) 0px 15px 35px 0px, rgba(0,0,0,0.31) 6px 6px 10px 0px;
-                                                                     //添加阴影效果 
-                                                                     border-radius: 20px;
-                                                                     //添加椭圆效果 
-                                                                     background-color: #FFF0F5;
-                                                                     //文章的背景色 
-                                                                     transition: -webkit-transform .3s; transition: transform .3s; transition: transform .3s,-webkit-transform .3s; transform-style: preserve-3d; } .post-expand .post-body{ position: relative; overflow: visible; padding: 20px; color: #666; font-size: 15px; word-break: break-word; } 
-                                                                     //标签的美化，使用圆形方框美化 
-                                                                     
-                                                                     .tag-cloud a { box-shadow: 0 1px 3px #6f42c1, 0 1px 2px #d9534f; padding: 2px 10px; margin: 8px; background: #c1425c00; border-bottom: none; border-radius: 20px; } 
-                                                                         //顶部进度条的隐藏代码(亲测未找到效果) 
-                                                                         .headband{ height: 0px; background: #fc6423; } 
-                                                                             //修改不蒜子数据颜色
-                                                                              .busuanzi-value { color: #1890ff; }
+/* 归档页样式 began */
+.page-archive .archive-page-counter {
+  font-size: 18px;
+  background-color: #49b1f5;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 8px;
+  color: #fff;
+  +mobile() {
+    font-size: 16px;
+  }
+}
+.my-post-time{
+  font-size: 11px;
+  position: absolute;
+  color: #fff;
+  background-color: #49b1f5;
+  border-radius: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-left: 15px;
+}
+.mypost{
+  position: relative;
+  margin-bottom: 1rem;
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  -ms-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+}
+a.my-post-title-link:before{
+  top: 10px;
+  width: 18px;
+  height: 18px;
+  content: "📚";
+  margin-right: 5px;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: 15px;
+  line-height: 18px;
+}
+.my-post:hover{
+  transform: scale(1.1);
+  box-shadow: 10px 10px 15px 2px rgba(0,0,0,.12), 0 0 6px 0 rgba(104, 104, 105, 0.1);
+  border-radius: 30px;
+  width: 400px;
+  padding: 1px 10px;
+  margin-left: 25px;
+  font-size: 16px;
+  transition-duration: 0.15s;
+  +mobile(){
+    width: 260px;
+    margin-left: 18px;
+  }
+  //display:flex;
+}
+a.my-post-title-link{
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 400;
+  +mobile() {
+    font-size: 14px;
+  }
+}
+.my-post-title{
+  display: block;
+  margin-left: 4.5rem;
+  color: #4c4948;
+  text-decoration: none;
+  font-size: .8rem;
+  cursor: pointer;
+  +mobile() {
+    //margin-left: 4rem;
+  }
+}
+.my-post-header{
+  position: top;
+  margin-bottom: 1rem;
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  -ms-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+}
+//.my-post-title-link{
+//  font-size: 16px;
+//  font-weight: 500;
+//}
+.my-post-meta{
+  position: absolute;
+  color: #99a9bf;
+  width: 80px;
+  color: #114142;
+}
+div.post-block.tag .collection-title h2 {
+  border-width: 1px;
+  border-style: solid;
+  border-color: #3f3f3f;
+  border-radius: 20px;
+  font-size: 22px;
+  background-color: #b4e8fa;
+  padding: 2px 15px;
+  letter-spacing: 1.5px;
+  box-sizing: border-box;
+  color: #3f3f3f;
+  display: inline-block;
+  margin: 10px 0 10px;
+  text-align: center;
+  +mobile(){
+    font-size: 18px;
+  }
+}
+.category-list-link:hover{
+  transform: scale(1.1);
+  box-shadow: 10px 10px 15px 2px rgba(0,0,0,.12), 0 0 6px 0 rgba(104, 104, 105, 0.1);
+  border-radius: 8px;
+  padding: 1px 1px;
+  margin-left: 5px;
+  font-size: 16px;
+  transition-duration: 0.15s;
+  //display:flex;
+}
+/* 归档页样式 end */

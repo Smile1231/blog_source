@@ -1051,7 +1051,14 @@ post_wordcount:
 #   more_excludes: []
 #   hideWholePostExcerpts: true
 
+#鼠标指针
 # mouse click effect: fireworks | explosion | love | text
 cursor_effect: love
 
+#动态雪花
 snow: snow
+
+# 侧栏粒子时钟
+diy_time:
+  runtime: true 
+  clock: true # 粒子时钟

@@ -1,8 +1,6 @@
 ---
 title: 什么是CRISPR/Cas9
-categories: 
-- 基因编辑
-- 数据挖掘
+categories: 基因编辑
 abbrlink: b7653deb
 date: 2021-11-09 23:06:15
 tags: 

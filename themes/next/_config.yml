@@ -1062,3 +1062,13 @@ snow: snow
 diy_time:
   runtime: true 
   clock: true # 粒子时钟
+
+# 文本结束提示语
+passage_end_tag:
+  enabled: true
+
+# 网站运行时间，格式形如：“本站已安全运行 12 天 11 小时 16 分 31 秒”
+# Runing Time
+running_time:
+  enable: true
+ 

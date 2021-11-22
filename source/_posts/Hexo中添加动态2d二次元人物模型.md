@@ -17,6 +17,7 @@ keywords:
 ```bash
 npm install --save hexo-helper-live2d
 ```
+<!-- more -->
 
 # 下载模型
 

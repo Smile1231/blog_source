@@ -1,11 +1,12 @@
 ---
 title: CRISPR-Cas9英文介绍
 hide: false
-date: 2021-12-02 22:12:11
 tags:
-- 生物信息
-- 基因编辑
+  - 生物信息
+  - 基因编辑
 categories: 基因编辑
+abbrlink: 1f142005
+date: 2021-12-02 22:12:11
 keywords:
 ---
 

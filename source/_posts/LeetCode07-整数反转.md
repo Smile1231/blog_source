@@ -1,7 +1,6 @@
 ---
 title: LeetCode07_整数反转
 hide: false
-date: 2021-11-23 23:02:41
 tags:
   - LeetCode
   - 算法
@@ -9,6 +8,8 @@ tags:
 categories: LeetCode
 keywords:
   - LeetCode
+abbrlink: 4491edd3
+date: 2021-11-23 23:02:41
 ---
 
 [题目链接](https://leetcode-cn.com/problems/reverse-integer/)

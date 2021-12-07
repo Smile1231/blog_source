@@ -1,12 +1,13 @@
 ---
 title: mysql日期加减
 hide: false
-date: 2021-12-07 19:20:01
-tags:
 categories: 数据库
 keywords:
-- 数据库
-- DataBase
+  - 数据库
+  - DataBase
+abbrlink: 388f5c14
+date: 2021-12-07 19:20:01
+tags:
 ---
 
 # 日期的加减

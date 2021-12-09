@@ -1,5 +1,5 @@
 ---
-title: 阶乘后的0
+title: LeetCode172_阶乘后的0
 hide: false
 tags:
   - LeetCode

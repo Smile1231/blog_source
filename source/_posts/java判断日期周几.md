@@ -1,14 +1,15 @@
 ---
 title: java判断日期周几
 hide: false
-date: 2021-12-07 19:17:30
-tags: 
-- Java
-- 日期
+tags:
+  - Java
+  - 日期
 categories: Java
 keywords:
-- Java
-- Calendar
+  - Java
+  - Calendar
+abbrlink: 60a1e80e
+date: 2021-12-07 19:17:30
 ---
 
 ```java

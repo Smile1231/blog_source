@@ -15,6 +15,7 @@ keywords:
 
 这边是讲解如何手动回滚事务
 
+<!-- more -->
 # 一、手动回滚事务
 
 有时我们需要捕获一些错误信息，又需要进行事务回滚，这时我们就需要用到`Spring`提供的事务切面支持类`TransactionAspectSupport`。

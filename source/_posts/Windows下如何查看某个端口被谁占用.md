@@ -12,6 +12,8 @@ keywords:
 ```shell
 netstat -ano
 ```
+
+<!-- more -->
 ## 查看被占用端口对应的 `PID`
 输入命令：
 ```shell

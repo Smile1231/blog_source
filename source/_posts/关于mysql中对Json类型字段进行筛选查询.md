@@ -1,14 +1,15 @@
 ---
 title: 关于mysql中对Json类型字段进行筛选查询
 hide: false
-date: 2022-01-11 11:15:26
 tags:
-- 数据库
-- Mysql
+  - 数据库
+  - Mysql
 categories: 数据库
 keywords:
-- 数据库
-- Mysql
+  - 数据库
+  - Mysql
+abbrlink: 377b6f7d
+date: 2022-01-11 11:15:26
 ---
 
 最近用到了对`Mysql`中对`JSON`类型的字符串进行筛选,这边做个简单的总结:

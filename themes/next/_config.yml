@@ -622,7 +622,7 @@ valine:
   avatar: mm # Gravatar style
   guest_info: nick,mail,link # Custom comment header
   pageSize: 10 # Pagination size
-  language: zh-cn # Language, available values: en, zh-cn
+  language: en # Language, available values: en, zh-cn
   visitor: false # Article reading statistic
   comment_count: true # If false, comment count will only be displayed in post page, not in home page
   recordIP: true # Whether to record the commenter IP
@@ -1060,8 +1060,9 @@ snow: snow
 
 # 侧栏粒子时钟
 diy_time:
-  runtime: true 
-  clock: true # 粒子时钟
+  runtime: false 
+  clock: false # 粒子时钟
+  nihong: true # 霓虹时钟
 
 # 文本结束提示语
 passage_end_tag:

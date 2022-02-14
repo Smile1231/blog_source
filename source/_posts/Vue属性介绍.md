@@ -163,11 +163,9 @@ vm.aDouble // => 4
 - 详细：
 ``methods`` 将被混入到 ``Vue`` 实例中。可以直接通过 ``VM`` 实例访问这些方法，或者在指令表达式中使用。方法中的 ``this`` 自动绑定为 ``Vue`` 实例。
 
-<table><tr><td bgcolor="#66CC00	">
-注意，不应该使用箭头函数来定义 method函数
-
+>注意，不应该使用箭头函数来定义 method函数
 (例如 plus: () => this.a++)。
-理由是箭头函数绑定了父级作用域的上下文，所以 this 将不会按照期望指向 Vue 实例，this.a 将是 undefined。</table></tr></td>
+理由是箭头函数绑定了父级作用域的上下文，所以 this 将不会按照期望指向 Vue 实例，this.a 将是 undefined。
 
 **实例:**
 ```js
@@ -246,10 +244,9 @@ vm.a = 2 // => new: 2, old: 1
 在实例挂载之后，元素可以用 ``vm.$el`` 访问。
 如果在实例化时存在这个选项，实例将立即进入编译过程，否则，需要显式调用 ``vm.$mount()`` 手动开启编译。
 
-<table><tr><td bgcolor="#66CC00	">
-提供的元素只能作为挂载点。不同于 Vue 1.x，所有的挂载元素会被 Vue 生成的 DOM 替换。因此不推荐挂载 root 实例到 html 或者 body 上。
+> 提供的元素只能作为挂载点。不同于 Vue 1.x，所有的挂载元素会被 Vue 生成的 DOM 替换。因此不推荐挂载 root 实例到 html 或者 body 上。
 <hr>
-如果 render 函数和 template property 都不存在，挂载 DOM 元素的 HTML 会被提取出来用作模板，此时，必须使用 Runtime + Compiler 构建的 Vue 库。</table></tr></td>
+如果 render 函数和 template property 都不存在，挂载 DOM 元素的 HTML 会被提取出来用作模板，此时，必须使用 Runtime + Compiler 构建的 Vue 库。
 
 
 #### **template**
@@ -258,22 +255,19 @@ vm.a = 2 // => new: 2, old: 1
 - 详细：一个字符串模板作为 ``Vue`` 实例的标识使用。模板将会替换挂载的元素。挂载元素的内容都将被忽略，除非模板的内容有分发插槽。
 如果值以 # 开始，则它将被用作选择符，并使用匹配元素的 ``innerHTML`` 作为模板。常用的技巧是用 ``<script type="x-template">`` 包含模板。
 
-<table><tr><td bgcolor="#66CC00	">
 出于安全考虑，你应该只使用你信任的 Vue 模板。避免使用其他人生成的内容作为你的模板。
 <hr>
 如果 Vue 选项中包含渲染函数，该模板将被忽略。
-</table></tr></td>
 
 
 #### **render**
 
 - 类型：(createElement: () => VNode) => VNode
 - 详细：字符串模板的代替方案，允许你发挥 JavaScript 最大的编程能力。该渲染函数接收一个 ``createElement`` 方法作为第一个参数用来创建 ``VNode``。
-<table><tr><td bgcolor="#66CC00	">
-如果组件是一个函数组件，渲染函数还会接收一个额外的 context 参数，为没有实例的函数组件提供上下文信息。
+
+>如果组件是一个函数组件，渲染函数还会接收一个额外的 context 参数，为没有实例的函数组件提供上下文信息。
 <hr>
 Vue 选项中的 render 函数若存在，则 Vue 构造函数不会从 template 选项或通过 el 选项指定的挂载元素中提取出的 HTML 模板编译渲染函数。
-</table></tr></td>
 
 #### **renderError**
 

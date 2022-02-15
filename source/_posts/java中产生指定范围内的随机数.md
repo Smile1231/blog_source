@@ -1,7 +1,9 @@
 ---
 title: java中产生指定范围内的随机数
 hide: false
-categories: Java
+categories: 
+- Java
+- Tools
 abbrlink: 817eab42
 date: 2022-01-27 17:57:25
 tags:

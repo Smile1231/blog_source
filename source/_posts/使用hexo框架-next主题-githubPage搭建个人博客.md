@@ -4,7 +4,9 @@ hide: false
 abbrlink: 3d071a12
 date: 2021-11-10 22:19:19
 tags:
-categories: Hexo
+categories: 
+- Hexo
+- Tools
 keywords:
 ---
 

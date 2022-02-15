@@ -7,7 +7,9 @@ tags:
  - blog
  - hexo
  - next
-categories: Hexo
+categories: 
+- Hexo
+- Tools
 keywords: hexo
 ---
 

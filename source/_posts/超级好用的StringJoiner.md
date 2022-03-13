@@ -1,10 +1,7 @@
 ---
 title: 超级好用的StringJoiner
 hide: false
-categories:
-  - Daily
-  - Java
-  - Tools
+categories: Tools
 keywords: StringJoiner
 abbrlink: ba83fda
 date: 2022-01-26 23:00:04

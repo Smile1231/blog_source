@@ -461,10 +461,249 @@ JDK动态代理执行方法调用的过程简图如下：
 {% asset_img 2022-03-14-18-28-41.png %}
 
 
+## `Proxy.newProxyInstance`源码`debug`
+
+代码：
+```java
+/**
+ * 返回将方法调用分派到指定调用处理程序的指定接口的代理类的实例。
+ */
+@CallerSensitive
+public static Object newProxyInstance(ClassLoader loader,
+                                        Class<?>[] interfaces,
+                                        InvocationHandler h)
+    throws IllegalArgumentException
+{
+    Objects.requireNonNull(h);
+    //复制一份传入的接口字节码对象数组
+    final Class<?>[] intfs = interfaces.clone();
+    final SecurityManager sm = System.getSecurityManager();
+    if (sm != null) {
+        checkProxyAccess(Reflection.getCallerClass(), loader, intfs);
+    }
+
+    //查找或生成指定的代理类
+    //此处使用类加载器和接口生成一个Proxy子类字节码对象
+    Class<?> cl = getProxyClass0(loader, intfs); ------------------------------------>  进入该核心方法
+
+    //使用指定的调用处理程序调用其构造函数
+    try {
+        if (sm != null) {
+            checkNewProxyPermission(Reflection.getCallerClass(), cl);
+        }
+        //获取构造器对象和调用处理器
+        final Constructor<?> cons = cl.getConstructor(constructorParams);
+        final InvocationHandler ih = h;
+        if (!Modifier.isPublic(cl.getModifiers())) {
+            AccessController.doPrivileged(new PrivilegedAction<Void>() {
+                public Void run() {
+                    cons.setAccessible(true);
+                    return null;
+                }
+            });
+        }
+        //用构造器和调用处理器创建proxy代理对象并返回
+        return cons.newInstance(new Object[]{h});
+    } catch  ...
+}
+```
+进入`getProxyClass0`方法：
+
+{% asset_img 2022-03-14-22-06-24.png %}
 
 
+进入到`get`方法
+```java
+// 通过缓存查找值。如果给定的 (key, subKey) 对的缓存中没有条目或条目已被清除
+// 则这始终评估subKeyFactory函数并可选地评估valueFactory函数。
+public V get(K key, P parameter) {
+    Objects.requireNonNull(parameter);
+
+    expungeStaleEntries();
+
+    Object cacheKey = CacheKey.valueOf(key, refQueue);
+
+    // 惰性地为特定的cacheKey安装第二级值map
+    ConcurrentMap<Object, Supplier<V>> valuesMap = map.get(cacheKey);
+    if (valuesMap == null) {
+        ConcurrentMap<Object, Supplier<V>> oldValuesMap
+            = map.putIfAbsent(cacheKey,
+                                valuesMap = new ConcurrentHashMap<>());
+        if (oldValuesMap != null) {
+            valuesMap = oldValuesMap;
+        }
+    }
+
+    // 创建subKey并从valuesMap中检索由该subKey存储的可能的Supplier<V>
+    Object subKey = Objects.requireNonNull(subKeyFactory.apply(key, parameter));
+    Supplier<V> supplier = valuesMap.get(subKey);
+    Factory factory = null;
+
+    while (true) {
+        if (supplier != null) {
+            // supplier可以是一个Factory或者CacheValue<V>实例
+            V value = supplier.get(); ----------------------------------->  进入该和新方法
+            if (value != null) {
+                return value;
+            }
+        }
+        //否则缓存中没有供应商 
+        //或返回null的供应商(可以是一个清除的CacheValue)
+        //或一个工厂，没有成功安装CacheValue)
+
+        // 懒惰地建造工厂
+        if (factory == null) {
+            factory = new Factory(key, parameter, subKey, valuesMap);
+        }
+
+        if (supplier == null) {
+            supplier = valuesMap.putIfAbsent(subKey, factory);
+            if (supplier == null) {
+                // successfully installed Factory
+                supplier = factory;
+            }
+            // else retry with winning supplier
+        } else {
+            if (valuesMap.replace(subKey, supplier, factory)) {
+                // successfully replaced
+                // cleared CacheEntry / unsuccessful Factory
+                // with our Factory
+                supplier = factory;
+            } else {
+                // retry with current supplier
+                supplier = valuesMap.get(subKey);
+            }
+        }
+    }
+}
+```
+`Supplier.get`方法,此处是`Factory`实现类
+```java
+@Override
+public synchronized V get() { // serialize access
+    // re-check
+    Supplier<V> supplier = valuesMap.get(subKey);
+    if (supplier != this) {
+        //在我们等待的时候发生了一些变化: 
+        //可能是我们被CacheValue替换了 
+        //或因为失败而被删除-> 
+        //返回null信号WeakCache.get()重试 
+        //循环
+        return null;
+    }
+    // else still us (supplier == this)
+
+    // create new value
+    V value = null;
+    try {
+        value = Objects.requireNonNull(valueFactory.apply(key, parameter)); ---------> 进入该apply核心方法
+    } finally {
+        if (value == null) { // remove us on failure
+            valuesMap.remove(subKey, this);
+        }
+    }
+    // 断言非空值
+    assert value != null;
+
+    // 使用CacheValue (WeakReference)包装值
+    CacheValue<V> cacheValue = new CacheValue<>(value);
+
+    // put into reverseMap
+    reverseMap.put(cacheValue, Boolean.TRUE);
+
+    // try replacing us with CacheValue (this should always succeed)
+    if (!valuesMap.replace(subKey, this, cacheValue)) {
+        throw new AssertionError("Should not reach here");
+    }
+
+    // successfully replaced us with new CacheValue -> return the value
+    // wrapped by it
+    return value;
+}
+```
+
+`apply`源码,此处为`Proxy`实现类
+```java
+@Override
+public Class<?> apply(ClassLoader loader, Class<?>[] interfaces) {
+
+    Map<Class<?>, Boolean> interfaceSet = new IdentityHashMap<>(interfaces.length);
+    for (Class<?> intf : interfaces) {
+        //验证类装入器解析此名称 指向同一个Class对象的接口
+        Class<?> interfaceClass = null;
+        try {
+            interfaceClass = Class.forName(intf.getName(), false, loader);
+        } catch (ClassNotFoundException e) {
+        }
+        if (interfaceClass != intf) {
+            throw new IllegalArgumentException(
+                intf + " is not visible from class loader");
+        }
+        //验证Class对象实际表示接口。
+        if (!interfaceClass.isInterface()) {
+            throw new IllegalArgumentException(
+                interfaceClass.getName() + " is not an interface");
+        }
+        // 确认该接口不是重复的接口。
+        if (interfaceSet.put(interfaceClass, Boolean.TRUE) != null) {
+            throw new IllegalArgumentException(
+                "repeated interface: " + interfaceClass.getName());
+        }
+    }
+
+    String proxyPkg = null;     // package to define proxy class in
+    int accessFlags = Modifier.PUBLIC | Modifier.FINAL;
+
+    // 记录非公共代理接口的包，
+    // 使代理类将在同一个包中定义。
+    // 验证所有的非公共代理接口都在同一个包中。
+    for (Class<?> intf : interfaces) {
+        int flags = intf.getModifiers();
+        if (!Modifier.isPublic(flags)) {
+            accessFlags = Modifier.FINAL;
+            String name = intf.getName();
+            int n = name.lastIndexOf('.');
+            String pkg = ((n == -1) ? "" : name.substring(0, n + 1));
+            if (proxyPkg == null) {
+                proxyPkg = pkg;
+            } else if (!pkg.equals(proxyPkg)) {
+                throw new IllegalArgumentException(
+                    "non-public interfaces from different packages");
+            }
+        }
+    }
+
+    if (proxyPkg == null) {
+        // 如果没有非公共代理接口，使用  com.sun.proxy 包
+        proxyPkg = ReflectUtil.PROXY_PACKAGE + ".";
+    }
+
+    // 为要生成的代理类选择一个名称
+    long num = nextUniqueNumber.getAndIncrement();
+    // 这理解解释了为什么我们每次debug的时候都会有一个 com.sun.proxy.$Proxy0  这种类名
+    String proxyName = proxyPkg + proxyClassNamePrefix + num;
+
+    //生成特定的代理类
+    //在上面中我讲生成的class文件输出在了out中，就是调用了这个方法，地方使用了AccessController.doPrivileged，为native方法，由C++编写
+    byte[] proxyClassFile = ProxyGenerator.generateProxyClass(
+        proxyName, interfaces, accessFlags);
+    try {
+        //调用native方法
+        return defineClass0(loader, proxyName,
+                            proxyClassFile, 0, proxyClassFile.length);
+    } catch (ClassFormatError e) {
+        //类formaterror表示(禁止代理类生成代码)还有一些其他的 提供给代理的参数的无效方面 类创建(如虚拟机限制超过)
+        throw new IllegalArgumentException(e.toString());
+    }
+}
+```
+
+> 小总结
+
+`newProxyInstance` -> `getProxyClass0` -> `supplier.get()` -> `valueFactory.apply` 就是生成代理类的大概原理啦，只要有兴趣，`debug`一下就可以了。
 
 
+[参考文章](https://juejin.cn/post/6844903744954433544) 
 
 
 

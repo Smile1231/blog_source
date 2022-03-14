@@ -137,6 +137,52 @@ make install
 
 {% asset_img 2022-03-13-23-19-52.png %}
 
+## `Linux`查看物理`CPU`个数、核数、逻辑`CPU`个数
+```bash
+# 总核数 = 物理CPU个数 X 每颗物理CPU的核数 
+# 总逻辑CPU数 = 物理CPU个数 X 每颗物理CPU的核数 X 超线程数
+
+# 查看物理CPU个数
+cat /proc/cpuinfo| grep "physical id"| sort| uniq| wc -l
+
+# 查看每个物理CPU中core的个数(即核数)
+cat /proc/cpuinfo| grep "cpu cores"| uniq
+
+# 查看逻辑CPU的个数 , 这是我们关心的,涉及到线程池大小
+cat /proc/cpuinfo| grep "processor"| wc -l
+```
+
+> 查看服务器信息指令
+
+```bash
+#查看CPU信息（型号）
+cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c
+
+#查看内存信息
+cat /proc/meminfo
+
+#如何查看Linux 内核
+uname -a
+cat /proc/version
+
+#查看机器型号（机器硬件型号）
+dmidecode | grep "Product Name"
+dmidecode
+
+#如何查看linux 系统版本
+cat /etc/redhat-release
+lsb_release -a
+cat  /etc/issue
+ 
+#如何查看linux系统和CPU型号，类型和大小
+cat /proc/cpuinfo
+
+#如何查看linux 系统内存大小的信息，可以查看总内存，剩余内存，可使用内存等信息  
+cat /proc/meminfo
+```
+
+
+
 ## `CPU`占用过高的定位分析思路
 
 结合`Linux`和`JDK`命令一块分析

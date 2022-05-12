@@ -1,9 +1,10 @@
 ---
 title: simple self introduction
 hide: false
-date: 2022-04-28 17:33:16
 tags: SAP
 categories: SAP
+abbrlink: 96b6e8a1
+date: 2022-04-28 17:33:16
 keywords:
 ---
 

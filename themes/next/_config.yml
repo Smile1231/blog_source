@@ -1056,7 +1056,7 @@ post_wordcount:
 cursor_effect: love
 
 #动态雪花
-snow: snow
+# snow: snow
 
 # 侧栏粒子时钟
 diy_time:

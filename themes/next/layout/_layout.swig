@@ -23,6 +23,16 @@
       <div class="main-inner">
         <div class="content-wrap">
           {% include '_partials/header/sub-menu.swig' %}
+          {%- if page.type !== 'categories' and page.type !== 'tags' and page.type !== 'schedule' and page.type !== 'works' and page.type !== 'about' and page.type !== 'post'%}
+            <div class="post-block animated fadeIn">
+              <h5 class="post-title" itemprop="name headline">
+                <a href="https://github.com/smile1231" class="post-title-link" itemprop="url">Github Contribution Calendar</a>
+              </h5>
+              <div class="post-body animated fadeInDown" itemprop="articleBody">
+                <img style="width: 100%; margin-top: 30px;" src="https://ghchart.rshah.org/e77c8e/smile1231" alt="JinMao's Blue Github Chart" />
+              </div>
+            </div>
+          {%- endif %}
           <div class="content {% block class %}{% endblock %}">
             {% block content %}{% endblock %}
           </div>

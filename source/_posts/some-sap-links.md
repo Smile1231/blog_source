@@ -53,15 +53,17 @@ git clone --recursive https://github.tools.sap/CPICACF/cf-us30-ica-iat
 iacbox -iv=iacbox.common.cdn.repositories.cloud.sap/iacbox2:v530
 
 iac state pull
+
 lscrypt unseal
 
 Master-Password:  2020IntegrationAdvisorHeidelberg!
 
-iac action create_manifest -d ianode
-
-iac action deploy -d ianode
-
 iac init-config -p product-cf-ica --secure-data -d env_setup -f    (subscribe)
+
+iac action create_manifest -d icaautoimport   (ctx.yml file)
+
+iac action deploy -d icaautoimport
+
 
 #####################################################################
 
@@ -84,6 +86,31 @@ lscrypt edit -d ianode credentials.yml
 
 lscrypt read -d icaworkspacenode credentials.yml
 
+#####################################################################
+# two procedure : iac push and git push
+# push code to cf-us30
+iac state
+iac state status
+# push to state branch
+iac state push
+# the next produre is git push.so ..
+#####################################################################
+
 ```
+
+credentials:
+  api:
+    apitoken: Z5R1nVh4Sca0YDNOrdlHE
+  cflogin:
+    email: SAP_SCP_CF_ICA_SETUP_PROD@SAP.COM
+    password: 08IntegrationAdvisorWalldorf!
+    user: P2002213338
+  nexus:
+    basic:
+      name: cpiproduser
+      password: AKCp8kqCFKc5w75bF2C4Dvfc5qGpicKravMR7dtkv1TyyhQ1xUEZXHWYSHw3my49Wauz7FHMh
+
+
+[ `SAP PassVault`](https://password.wdf.sap.corp/passvault/index.html)
 
 

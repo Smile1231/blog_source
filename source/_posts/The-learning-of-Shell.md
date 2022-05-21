@@ -542,5 +542,104 @@ ls -l /usr/ |awk '/^d/ {print $NF}'   ## 其实同方法一，直接就可以显
 ```
 
 
+## 常用 `Linux jq`命令语法整理
+
+[参考链接](https://blog.csdn.net/Cheat1173010256/article/details/118230562#:~:text=JQ%20%E6%98%AF%E4%B8%80%E4%B8%AA%20%E5%91%BD%E4%BB%A4%20%E8%A1%8C%E5%B7%A5%E5%85%B7%EF%BC%8C%E4%B8%BB%E8%A6%81%E7%94%A8%E4%BA%8E%E5%A4%84%E7%90%86json%E6%96%87%E6%9C%AC%E3%80%82%20%E8%AF%AD%E6%B3%95,%E5%BE%88%E7%AE%80%E5%8D%95%EF%BC%8C%E5%A6%82%E4%B8%8B%EF%BC%9A%20jq%20%5Boptions...%5D%20filter%20%5Bfiles...%5D)
+
+{% asset_img 2022-05-13-20-25-50.png %}
+
+{% asset_img 2022-05-13-20-26-18.png %}
+
+{% asset_img 2022-05-13-20-26-42.png %}
+
+{% asset_img 2022-05-13-20-27-00.png %}
 
 
+## `shell`脚本中整数型变量自增（加`1`）的实现方式
+
+```shell
+#!/bin/sh
+#本脚本测试shell脚本中整型变量自增 加1的几种方法
+ 
+#定义整型变量
+a=1
+echo $a
+ 
+#第一种整型变量自增方式
+a=$(($a+1))
+echo $a
+ 
+#第二种整型变量自增方式
+a=$[$a+1]
+echo $a
+ 
+#第三种整型变量自增方式
+a=`expr $a + 1`
+echo $a
+ 
+#第四种整型变量自增方式
+let a++
+echo $a
+ 
+#第五种整型变量自增方式
+let a+=1
+echo $a
+ 
+#第六种整型变量自增方式
+((a++))
+echo $a
+```
+
+## `shell`判断一个变量是否为空
+
+```shell
+[ ! $a ] && echo "a is null" 
+
+
+#!/bin/sh 
+a= 
+if [ ! -n "$a" ]; then 
+echo "IS NULL" 
+else 
+echo "NOT NULL" 
+fi
+
+#!/bin/sh 
+a= 
+if [ ! $a ]; then
+echo "IS NULL" 
+else 
+echo "NOT NULL" 
+fi
+
+#!/bin/sh 
+a= 
+if test -z "$a" then 
+echo "a is not set!" 
+else 
+echo "a is set !" 
+fi
+
+#!/bin/sh 
+a= 
+if [ "$a" = "" ]; then 
+echo "a is not set!" 
+else 
+echo "a is set !" 
+fi
+```
+
+## 输出到文件
+
+```shell
+#两种方法：
+2>&1 | tee mylog.log
+> test.txt
+#举例：
+------------------------------------------------------------
+sh batchjob.sh 2>&1 | tee mylog.log
+ls * > test.txt
+-------------------------------------------------------------
+find ./ -name "*.xml" > result.txt
+find ./ -name "*.xml" 2>&1 | tee mylog.log
+```

@@ -16,6 +16,20 @@ keywords:
 
 > 文件上传与下载
 
+1. `Spring Boot`默认单个文件上传大小是`1MB`,默认多个文件上传总大小是`10MB`
+
+```yml
+spring:
+  servlet:
+    #配置单个上传文件的大小的限制
+    multipart:
+      max-file-size: 20MB
+    #配置在一次请求中上传文件的总容量的限制
+      max-request-size: 50MB
+```
+
+<!-- more -->
+
 ```java
 @PostMapping("/upload")
     public String uploadFile(MultipartFile file){
@@ -70,8 +84,6 @@ keywords:
         return "上传成功";
     }
 ```
-
-<!-- more -->
 
 ```java
 //文件下载

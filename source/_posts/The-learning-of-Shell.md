@@ -17,6 +17,10 @@ Nowdays , i hava a task about how to use shell script ,so it is time to learn sh
 
 <!-- more -->
 
+## ``ALL``
+
+[https://www.runoob.com/linux/linux-command-manual.html](https://www.runoob.com/linux/linux-command-manual.html)
+
 ## `zip`和`upzip`
 
 ```bash
@@ -643,3 +647,16 @@ ls * > test.txt
 find ./ -name "*.xml" > result.txt
 find ./ -name "*.xml" 2>&1 | tee mylog.log
 ```
+
+## `Shell` 实现多线程（多任务）
+
+1. 命令结尾添加：`&`
+2. 解决主线程提前退出问题，添加 `wait`
+3. 控制后台执行数（线程数），`mkfifo`
+
+[https://www.cnblogs.com/zhengbin/p/9513762.html](https://www.cnblogs.com/zhengbin/p/9513762.html)
+
+
+
+
+

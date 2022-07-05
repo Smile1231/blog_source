@@ -82,4 +82,21 @@ npm run dev
 ## 使用Vue-Cli工程各目录介绍
 
 
+## ``Vue``修改端口号
+
+`package.json`文件下修改 `–port`
+```json
+"scripts": {
+   "serve": "vue-cli-service serve --port 9991",
+ }
+```
+`vue.config.js`文件下添加 (如果没有就在根目录下创建文件)
+```js
+module.exports = {
+  devServer: {
+    port: 9991
+  }
+}
+```
+
 

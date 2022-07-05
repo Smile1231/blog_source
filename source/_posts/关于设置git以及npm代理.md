@@ -55,6 +55,27 @@ npm config delete proxy
 npm config delete https-proxy
 ```
 
+## 关于``git``修改推送仓库地址
 
+> 查看远程仓库地址
+
+```bash
+git remote -v
+```
+
+方法有三种：
+
+修改命令
+```bash
+git remote set-url origin [url]
+```
+先删后加
+```bash
+git remote rm origin
+git remote add origin [url]
+```
+
+
+[查看`Ip`](https://ipaddress.com/website/github.com)
 
 <!-- https://github.com/microsoft/terminal -->

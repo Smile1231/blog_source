@@ -100,7 +100,7 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: next
+theme: shoka
 
 
 # Deployment
@@ -111,7 +111,7 @@ deploy:
   branch: master
 
 live2d:
-    enable: true
+    enable: false
     scriptFrom: local
     model: 
         use: live2d-widget-model-shizuku #模型选择 live2d-widget-model-wanko
@@ -122,11 +122,11 @@ live2d:
     mobile: 
         show: false      #是否在手机端显示
 
-search:
-  path: search.xml
-  field: post
-  format: html
-  limit: 10000
+# search:
+#   path: search.xml
+#   field: post
+#   format: html
+#   limit: 10000
 
 permalink: posts/:abbrlink/
 abbrlink:
@@ -143,3 +143,19 @@ feed:
   path: atom.xml
   limit: 20
 
+
+algolia:
+  appId: 'IHNRZ4OCCZ'
+  apiKey: 'e4f3063c9cd2eb9570a66fb0b6084c96'
+  adminApiKey: '4a125a9f948ef929a0144a15076cd56a'
+  indexName: 'jinmao'
+  chunkSize: 5000
+  fields:
+    - title #必须配置
+    - path #必须配置
+    - categories #推荐配置
+    - content:strip:truncate,0,4000
+    - gallery
+    - photos
+    - tags
+    

@@ -1,14 +1,15 @@
 ---
 title: 如何让自己的博客被Google以及百度收录
 hide: false
-date: 2022-07-08 14:23:55
 tags:
-- Hexo
-- Google
-categories:
+  - Hexo
+  - Google
 keywords:
-- Hexo
-- Google
+  - Hexo
+  - Google
+abbrlink: 3c59e6c8
+date: 2022-07-08 14:23:55
+categories:
 ---
 
 参考文章： [https://segmentfault.com/a/1190000037550362](https://segmentfault.com/a/1190000037550362)

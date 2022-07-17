@@ -75,6 +75,20 @@ git remote rm origin
 git remote add origin [url]
 ```
 
+## `git`统计项目代码行数
+>显示项目的所有文件列表及行数（已删除的文件显示为空）
+最后一行会显示项目代码的总行数
+```git
+git ls-files | xargs wc -l
+```
+>只统计项目代码的总行数
+```git
+git ls-files | xargs cat | wc -l
+```
+>只查看项目文件列表
+```
+git ls-files
+```
 
 [查看`Ip`](https://ipaddress.com/website/github.com)
 

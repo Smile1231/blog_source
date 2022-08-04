@@ -210,4 +210,72 @@ docker run -p 9999:9999 --name BABE_Thesis -d babe_end
 {% asset_img 2022-07-02-13-35-28.png %}
 
 
+## `Docker`安装`Jenkins`
+
+原理图：
+{% asset_img 2022-08-04-23-24-21.png %}
+
+1. 拉取镜像(稳定版本)
+```bash
+docker pull jenkins/jenkins:lts
+```
+{% asset_img 2022-08-04-23-21-06.png %}
+
+2. 创建挂载目录
+
+> 创建目录
+```bash
+/Users/jinmao/Documents/Docker/jenkins_mount
+```
+
+3. 运行容器
+
+```bash
+# -d 后台运行镜像
+# -p 10240:8080 将镜像的8080端口映射到服务器的10240端口。
+# -p 10241:50000 将镜像的50000端口映射到服务器的10241端口
+# -v /Users/jinmao/Documents/Docker/jenkins_mount:/var/jenkins_home /var/jenkins_home目录为容器jenkins工作目录，我们将硬盘上的一个目录挂载到这个位置，方便后续更新镜像后继续使用原来的工作目录。这里我们设置的就是上面我们创建的 /Users/jinmao/Documents/Docker/jenkins_mount 目录
+# -v /etc/localtime:/etc/localtime让容器使用和服务器同样的时间设置。
+# --name myJenkins 给容器起一个别名
+docker run -d -p 10240:8080 -p 10241:50000 -v /Users/jinmao/Documents/Docker/jenkins_mount:/var/jenkins_home -v /etc/localtime:/etc/localtime --name myJenkins jenkins/jenkins:lts
+```
+{% asset_img 2022-08-05-00-10-33.png %}
+
+4. 查看`jenkins`是否启动成功
+```bash
+docker ps
+```
+{% asset_img 2022-08-05-00-12-41.png %}
+
+5. 查看`docker`容器日志。
+
+```bash
+docker logs <name> 
+# docker logs myJenkins
+```
+{% asset_img 2022-08-05-00-14-43.png %}
+
+6. 进入挂载目录
+
+{% asset_img 2022-08-05-00-15-42.png %}
+
+可选做:
+`vim`修改 `hudson.model.UpdateCenter.xml`里的内容,将 `url` 修改为 清华大学官方镜像：`https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/update-center.json`
+
+7. 访问`Jenkins`
+```bash
+localhost:10240
+```
+{% asset_img 2022-08-05-00-20-45.png %}
+
+根据提示输入密码
+{% asset_img 2022-08-05-00-26-18.png %}
+
+8. 安装 `plugin`
+
+{% asset_img 2022-08-05-00-27-44.png %}
+
+安装完成即可使用
+{% asset_img 2022-08-05-00-28-01.png %}
+
 

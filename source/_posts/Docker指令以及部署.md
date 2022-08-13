@@ -16,6 +16,8 @@ keywords:
 
 [Docker Install](https://docs.docker.com/engine/install/)
 
+[Docker 部署 Springboot](https://blog.csdn.net/weixin_40816738/article/details/117652736)
+
 ## 列出所有镜像
 ```bash
 docker images
@@ -199,7 +201,7 @@ ENTRYPOINT ["java","-jar","/app.jar"]
 ```
 > 打包命令
 ```bash
-docker buil -t <lower_name> .
+docker build -t <lower_name> .
 ```
 {% asset_img 2022-07-02-13-32-00.png %}
 
@@ -241,6 +243,11 @@ docker run -d -p 10240:8080 -p 10241:50000 -v /Users/jinmao/Documents/Docker/jen
 ```
 {% asset_img 2022-08-05-00-10-33.png %}
 
+> 链接别的容器(`--link`，前面为容器名，后面为别名)
+```bash
+run -d -p 10242:8080 -p 10243:50000 -v /Users/jinmao/Documents/Docker/jenkins_m/jenkins_10242:/var/jenkins_home -v /etc/localtime:/etc/localtime --link mysql57:mysql  --name myJenkins10242  jenkins/jenkins:lts
+```
+
 4. 查看`jenkins`是否启动成功
 ```bash
 docker ps
@@ -259,9 +266,6 @@ docker logs <name>
 
 {% asset_img 2022-08-05-00-15-42.png %}
 
-可选做:
-`vim`修改 `hudson.model.UpdateCenter.xml`里的内容,将 `url` 修改为 清华大学官方镜像：`https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/update-center.json`
-
 7. 访问`Jenkins`
 ```bash
 localhost:10240
@@ -275,7 +279,39 @@ localhost:10240
 
 {% asset_img 2022-08-05-00-27-44.png %}
 
-安装完成即可使用
+安装完成创建一下账户即可使用(账户截图未展示)
 {% asset_img 2022-08-05-00-28-01.png %}
+
+## `Jenkins` 关闭跨域
+低版本可以直接在图形化界面中关闭，高版本只能进入`Docker`容器中更改
+
+> 进入容器
+```bash
+# docker exec -u root -it myJenkins bash
+docker exec -u root -it <name> bash
+
+# apt update
+apt-get update
+
+# install vim
+apt-get install vim
+
+# change configuration
+vim /usr/local/bin/jenkins.sh
+
+-Dhudson.security.csrf.GlobalCrumbIssuerConfiguration.DISABLE_CSRF_PROTECTION=true
+```
+{% asset_img 2022-08-05-11-25-46.png %}
+
+> 需要重启
+```bash
+# docker restart myJenkins
+docker restart <name>
+```
+
+关闭成功
+{% asset_img 2022-08-05-11-39-50.png %}
+
+
 
 

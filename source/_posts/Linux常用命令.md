@@ -115,6 +115,37 @@ cat /etc/os-release
 ```
 {% asset_img 2022-06-30-10-12-30.png %}
 
+### 查看内核版本
+```linux
+cat /proc/version
+uname -a
+uname -r
+```
+{% asset_img 2022-08-06-10-40-55.png %}
+
+### 查看`linux`版本信息
+```linux
+lsb_release -a
+cat /etc/issue
+```
+{% asset_img 2022-08-06-10-42-19.png %}
+
+### 查看`linux`是`64`为还是`32`位
+```linux
+getconf LONG_BIT
+file /bin/ls
+```
+{% asset_img 2022-08-06-10-43-41.png %}
+
+### 直接查看系统的架构
+```linux
+dpkg --print-architecture
+arch
+file /lib/systemd/systemd
+```
+{% asset_img 2022-08-06-10-45-09.png %}
+
+
 ## 查看开放端口
 
 ```bash
@@ -207,5 +238,21 @@ jps -l
 kill -9 <PID>
 ```
 
+## `linux shell` 缺少 `ps` 命令
 
-
+1. 缺少 `ps` 命令
+```bash
+apt-get install -y procps
+yum install -y procps
+```
+2. 缺少 `pstree` 命令
+```bash
+apt-get install -y psmisc
+yum install -y psmisc
+```
+3. 出现找不到包的问题：
+{% asset_img 2022-08-08-11-51-34.png %}
+更新一下就可以了：
+```bash
+apt-get update
+```

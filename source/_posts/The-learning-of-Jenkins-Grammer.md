@@ -139,4 +139,61 @@ proc.waitFor()
 def status = proc.exitValue()
 ```
 
+## `pipleline`讲解
 
+```bash
+pipeline {
+  agent {
+    /**
+    * agent none ，这样可以在具体的stages中定义
+agent：指定流水线的执行位置，流水线中的每个阶段都必须在某个地方（物理机，虚拟机或 Docker 容器）执行，agent 部分即指定具体在哪里执行。
+    */
+
+    /*
+    *说明某项目要在jdk8的环境中创建
+    *实际上agent { label 'jdk8' }是 agent { node { label 'jdk8' } } 的简写。 
+    */
+    label 'jdk8'
+  }
+  /*
+  environment指令指定一系列键值对，这些对值将被定义为所有步骤的环境变量或阶段特定步骤
+
+environment{…}, 大括号里面写一些键值对，也就是定义一些变量并赋值，这些变量就是环境变量。环境变量的作用范围，取决你environment{…}所写的位置，你可以写在顶层环境变量，让所有的stage下的step共享这些变量，也可以单独定义在某一个stage下，只能供这个stage去调用变量，其他的stage不能共享这些变量。一般来说，我们基本上上定义全局环境变量，如果是局部环境变量，我们直接用def关键字声明就可以，没必要放environment{…}里面。
+*/
+  environment{
+    project = ''
+    staticname = ''
+    appname= ''
+    version=''
+  }
+//  需要配置jdk环境，那这个里面的jdk环境与agent label有啥区别
+tools{
+   jdk 'jdk1.8.0_121'
+}
+// 定义阶段，可以设置并行和串行，默认情况就是串行的，默认的如下举例
+/**
+* stage('Parallel Stage') {
+*           failFast true
+*            parallel {
+*                stage('并行一') {
+*                    steps {
+*                        echo "并行一"
+*                    }
+*                stage('并行2') {
+*                    steps {
+*                        echo "并行2"
+*                    }
+*            }
+*}
+
+**/
+  stages {
+     stage ('build') {
+         steps {
+            echo 'build'
+         }
+     }
+  }
+
+}
+```

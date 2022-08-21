@@ -80,7 +80,7 @@ docker logs <NAMES>
 docker pull --platform linux/x86_64 mysql:5.7
 
 # 启动mysql
-docker run --name mymysql -e MYSQL_ROOT_PASSWORD=root -d -p 3306:3306  mysql:5.7
+docker run --name mymysql -e MYSQL_ROOT_PASSWORD=root -v /etc/localtime:/etc/localtime -d -p 3306:3306  mysql:5.7
 ```
 
 ## `Docker`安装`Nginx`并且部署`Vue`项目

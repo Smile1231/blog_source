@@ -45,8 +45,9 @@ spring:
 
             File files = new File("/Users/jinmao/Documents/IDEASpace/springboot01/src/" + fileName);
             //上传
-            if(!files.exists()) files.mkdirs();
-            file.transferTo(files);
+            // if(!files.exists()) files.mkdirs();
+            // file.transferTo(files);
+            Files.copy(file.getInputStream(),files.toPath());
         } catch (IOException e) {
             e.printStackTrace();
             return "上传失败";

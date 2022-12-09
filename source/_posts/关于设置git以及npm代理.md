@@ -90,6 +90,19 @@ git ls-files | xargs cat | wc -l
 git ls-files
 ```
 
-[查看`Ip`](https://ipaddress.com/website/github.com)
+[查看`Ip` link click](https://ipaddress.com/website/github.com)
+
+## git 更改user 信息
+
+```git
+git config --global user.name "Your Name"
+git config --global user.email "your_email@example.com"
+
+git config --list
+
+git config --global credential.helper cache
+
+```
+
 
 <!-- https://github.com/microsoft/terminal -->
